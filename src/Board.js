@@ -3,7 +3,7 @@ import Square from "./Square.js";
 
 export default class Board extends React.Component {
   render() {
-    let lines = this.props.board.map((boardLine, row) => {
+    let lines = this.props.desk.board.map((boardLine, row) => {
       let oneLine = boardLine.map((cell, col) => {
         return this.renderSquare(cell, row, col);
       });

@@ -7,25 +7,30 @@ import "./Desk.css";
 
 export default class Desk extends React.Component {
   render() {
-    const baseHeight = 11;
-    const baseWidth = 10;
-
     let state = {
       topLegend: this.getTopLegend(),
       leftLegend: this.getLeftLegend(),
       board: this.getBoard(),
+      settings: {
+        cellHeight: 11,
+        cellWidth: 10,
+        boardHeight: 5,
+        boardWidth: 5,
+        leftLegendWidth: 5,
+        topLegendHeight: 5,
+      },
     };
     return (
       <div className="desk">
         <LegendEmpty
           className="top-left-empty"
-          width={baseWidth * 3}
-          height={baseHeight * 3}
+          width={state.settings.cellWidth * state.settings.leftLegendWidth - 1}
+          height={state.settings.cellHeight * state.settings.topLegendHeight}
         />
-        <TopLegend legendColumns={state.topLegend} />
+        <TopLegend desk={state} />
         <div style={{ clear: "both" }} />
-        <LeftLegend legendRows={state.leftLegend} />
-        <Board board={state.board} />
+        <LeftLegend desk={state} />
+        <Board desk={state} />
       </div>
     );
   }

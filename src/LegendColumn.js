@@ -1,8 +1,6 @@
 import LegendCell from "./LegendCipher";
 import LegendEmpty from "./LegendEmpty";
 export default function LegendColumn(props) {
-  const baseHeight = 11;
-  const baseWidth = 10;
   let ciphers = props.value.map((cipher) => {
     return (
       <LegendCell
@@ -13,8 +11,10 @@ export default function LegendColumn(props) {
     );
   });
 
-  let emptyHeight = baseHeight * (3 - props.value.length);
-  let emptyWidth = baseWidth * 1;
+  let emptyHeight =
+    props.desk.settings.cellHeight *
+    (props.desk.settings.topLegendHeight - props.value.length);
+  let emptyWidth = props.desk.settings.cellWidth;
   ciphers.push(
     <LegendEmpty
       className="legend-top-empty"
